@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Abas Salvas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; color: #333; }
+        h1 { margin-bottom: 20px; }
+        .group { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .group-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; }
+        .group-header h2 { margin: 0; font-size: 18px; color: #555; }
+        .tab-link { display: block; margin: 8px 0; color: #1a0dab; text-decoration: none; font-size: 14px; }
+        .tab-link:hover { text-decoration: underline; }
+        button { background-color: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 14px;}
+        button:hover { background-color: #0056b3; }
+        .delete-btn { background-color: #dc3545; margin-bottom: 20px; }
+        .delete-btn:hover { background-color: #c82333; }
+    </style>
+</head>
+<body>
+    <h1>Minhas Abas Salvas</h1>
+    <button id="clearAll" class="delete-btn">Apagar Todo o Histórico</button>
+    <div id="container"></div>
+    <script src="list.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  
+    "manifest_version": 3,
+  "name": "Gerenciador de Abas Simples",
+  "version": "1.0",
+  "description": "Salva suas abas abertas em uma lista para economizar memória.",
+  "permissions": ["tabs", "storage"],
+  "action": {
+    "default_title": "Agrupar Abas"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+
+}
