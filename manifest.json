@@ -1,15 +1,13 @@
 {
-  
-    "manifest_version": 3,
-  "name": "Gerenciador de Abas Simples",
+  "manifest_version": 3,
+  "name": "Gerenciador de Abas",
   "version": "1.0",
-  "description": "Salva suas abas abertas em uma lista para economizar memória.",
-  "permissions": ["tabs", "storage"],
+  "description": "Uma extensão para gerenciar e organizar suas abas no navegador.",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
   "action": {
-    "default_title": "Agrupar Abas"
-  },
-  "background": {
-    "service_worker": "background.js"
+    "default_popup": "popup.html"
   }
-
 }

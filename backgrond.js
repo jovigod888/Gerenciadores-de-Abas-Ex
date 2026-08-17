@@ -34,9 +34,33 @@ chrome.action.onClicked.addListener(async () => {
       } else {
         chrome.tabs.create({ url: "list.html" });
       }
-      
     });
-
   });
 
+  // Exemplo de ouvinte de instalação/atualização
+  chrome.runtime.onInstalled.addListener(() => {
+    console.log("Gerenciador de Abas instalado com sucesso.");
+  });
+
+  // Exemplo de listener de eventos das abas
+  chrome.tabs.onCreated.addListener((tab) => {
+    // Processamento quando uma nova aba é criada
+  });
+  
+  chrome.tabs.query({ currentWindow: true }, function(tabs) {
+    console.log(tabs);
+  });
+  async function getTabs() {
+  const tabs = await chrome.tabs.query({ currentWindow: true });
+  console.log(tabs);
+
+  chrome.tabs.executeScript(tabId, { file: 'content.js' });
+  await chrome.scripting.executeScript({
+  target: { tabId: tabId },
+  files: ['content.js']
 });
+
+}
+
+});
+
