@@ -7,7 +7,6 @@ document.getElementById('clearAll').addEventListener('click', () => {
     }
 });
 
-
 // Função que carrega as abas do storage e exibe na tela
 function loadTabs() {
     chrome.storage.local.get(["savedTabGroups"], (result) => {
@@ -45,6 +44,8 @@ function loadTabs() {
             });
 
             container.appendChild(groupDiv);
+            
+            
         });
     });
 }
