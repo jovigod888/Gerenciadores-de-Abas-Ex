@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciador de Abas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="tab-container">
+    <!-- Lista de Abas (tablist) -->
+    <div role="tablist" aria-label="Navegação por Abas" class="tab-list">
+      <button 
+        role="tab" 
+        id="tab-1" 
+        aria-controls="panel-1" 
+        aria-selected="true" 
+        data-target="panel-1"
+        tabindex="0">
+        Aba 1
+      </button>
+
+      <button 
+        role="tab" 
+        id="tab-2" 
+        aria-controls="panel-2" 
+        aria-selected="false" 
+        data-target="panel-2"
+        tabindex="-1">
+        Aba 2
+      </button>
+
+      <button 
+        role="tab" 
+        id="tab-3" 
+        aria-controls="panel-3" 
+        aria-selected="false" 
+        data-target="panel-3"
+        tabindex="-1">
+        Aba 3
+      </button>
+    </div>
+
+    <!-- Painéis de Conteúdo (tabpanel) -->
+    <div id="panel-1" role="tabpanel" aria-labelledby="tab-1" class="tab-panel">
+      <h2>Conteúdo da Aba 1</h2>
+      <p>Este é o primeiro painel de conteúdo.</p>
+    </div>
+
+    <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" class="tab-panel" hidden>
+      <h2>Conteúdo da Aba 2</h2>
+      <p>Este é o segundo painel de conteúdo.</p>
+    </div>
+
+    <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" class="tab-panel" hidden>
+      <h2>Conteúdo da Aba 3</h2>
+      <p>Este é o terceiro painel de conteúdo.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
