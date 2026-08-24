@@ -1,6 +1,4 @@
-readme_content = """# Gerenciador de Abas Simples
 
-Uma extensão leve e eficiente para navegadores baseados em Chromium (Google Chrome, Microsoft Edge, Brave, etc.) que permite salvar todas as suas abas abertas em uma única lista. Inspirada no OneTab, esta ferramenta ajuda a organizar sua área de trabalho e economizar memória RAM do seu computador.
 
 ## 🚀 Funcionalidades
 
