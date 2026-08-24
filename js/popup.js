@@ -12,9 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li");
       li.className = "tab-item";
 
-      // Ícone (Favicon)
+      // Ícone (Favicon) — usa o domínio real da aba como fallback
       const favicon = document.createElement("img");
-      favicon.src = tab.favIconUrl || "https://www.google.com/s2/favicons?domain=example.com";
+      let fallbackDomain = "";
+      try {
+        fallbackDomain = tab.url ? new URL(tab.url).hostname : "";
+      } catch {
+        fallbackDomain = "";
+      }
+      favicon.src =
+        tab.favIconUrl || `https://www.google.com/s2/favicons?domain=${fallbackDomain}`;
       favicon.className = "tab-icon";
 
       // Título / Ação de Alternar para a Aba
@@ -69,9 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
   closeAllBtn.addEventListener("click", async () => {
     const tabs = await chrome.tabs.query({ currentWindow: true });
     const tabIds = tabs.map((tab) => tab.id);
-    if (tabIds.length > 0) {
-      await chrome.tabs.remove(tabIds);
-    }
+    if (tabIds.length === 0) return;
+
+    const confirmado = confirm(
+      `Fechar ${tabIds.length} aba(s)? Essa ação não pode ser desfeita.`
+    );
+    if (!confirmado) return;
+
+    await chrome.tabs.remove(tabIds);
   });
 
   // Inicializa a renderização
