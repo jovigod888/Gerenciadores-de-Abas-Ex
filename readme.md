@@ -44,4 +44,6 @@ Como esta extensão está em formato de código-fonte, você precisa instalá-la
 - `list.js`: Script que interage com a página `list.html`, buscando os dados guardados e criando os elementos na tela.
 
 ---
+*Desenvolvido por claude*
+"""
 
