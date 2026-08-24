@@ -44,10 +44,3 @@ Como esta extensão está em formato de código-fonte, você precisa instalá-la
 - `list.js`: Script que interage com a página `list.html`, buscando os dados guardados e criando os elementos na tela.
 
 ---
-*Desenvolvido como um utilitário prático para foco e produtividade no dia a dia.*
-"""
-
-with open("README.md", "w", encoding="utf-8") as f:
-    f.write(readme_content)
-
-print("File generated successfully.")
