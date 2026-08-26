@@ -1,4 +1,12 @@
 {
+  "manifest_version": 3,
+  "name": "Gerenciador de Abas",
+  "version": "1.0",
+  "description": "Uma extensão para gerenciar e organizar suas abas no navegador.",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -8,7 +16,7 @@
     }
   },
   "background": {
-    "service_worker": "js/background.js" 
+    "service_worker": "js/background.js"
   },
   "icons": {
     "16": "icons/icon16.png",
