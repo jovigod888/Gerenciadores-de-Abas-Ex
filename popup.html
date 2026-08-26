@@ -2,60 +2,75 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Gerenciador de Abas</title>
+  <title>Gerenciador de Abas Avançado</title>
+  <link rel="stylesheet" href="css/style.css">
   <style>
     body {
-      width: 320px;
+      width: 360px;
       font-family: system-ui, -apple-system, sans-serif;
       margin: 0;
       padding: 12px;
       background-color: #f8f9fa;
       color: #333;
     }
-    .header {
+    .nav-tabs {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
+      gap: 4px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 6px;
     }
-    h3 {
-      margin: 0;
-      font-size: 15px;
+    .nav-btn {
+      flex: 1;
+      padding: 6px;
+      border: none;
+      background: #e9ecef;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 4px;
     }
-    .actions {
-      display: flex;
+    .nav-btn.active {
+      background: #0d6efd;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 6px;
       margin-bottom: 12px;
     }
     .btn {
-      flex: 1;
-      padding: 6px 10px;
+      padding: 6px 8px;
       border: 1px solid #ccc;
       border-radius: 6px;
       background: #fff;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: background 0.2s;
     }
-    .btn:hover {
-      background: #e9ecef;
-    }
-    .btn-danger {
-      color: #dc3545;
-      border-color: #f5c6cb;
-    }
-    .btn-danger:hover {
-      background: #f8d7da;
-    }
+    .btn:hover { background: #e9ecef; }
+    .btn-primary { background: #0d6efd; color: white; border: none; }
+    .btn-primary:hover { background: #0b5ed7; }
+    .btn-danger { color: #dc3545; border-color: #f5c6cb; }
+    .btn-danger:hover { background: #f8d7da; }
+
+    /* Estilos das listas */
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      max-height: 300px;
+      max-height: 250px;
       overflow-y: auto;
     }
-    .tab-item {
+    .list-item {
       display: flex;
       align-items: center;
       padding: 8px;
@@ -63,52 +78,87 @@
       background: #fff;
       border: 1px solid #e0e0e0;
       border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.15s;
+      font-size: 12px;
     }
-    .tab-item:hover {
-      background: #f1f3f5;
+    .tab-item { cursor: pointer; }
+    .tab-item:hover { background: #f1f3f5; }
+    .tab-icon { width: 16px; height: 16px; margin-right: 8px; flex-shrink: 0; }
+    .tab-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    
+    /* Input e Sessões */
+    .session-input-group {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
     }
-    .tab-icon {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
-      flex-shrink: 0;
-    }
-    .tab-title {
+    .session-input-group input {
       flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 13px;
-    }
-    .close-btn {
-      background: none;
-      border: none;
-      color: #aaa;
-      cursor: pointer;
-      font-size: 14px;
-      padding: 2px 6px;
+      padding: 6px;
+      border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 12px;
     }
-    .close-btn:hover {
-      color: #dc3545;
-      background: #f8d7da;
+
+    /* Caixa de Estatísticas */
+    .stat-card {
+      background: white;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-bottom: 8px;
+      font-size: 12px;
     }
+    .stat-card h4 { margin: 0 0 6px 0; font-size: 13px; color: #0d6efd; }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h3>Gerenciador de Abas</h3>
+
+  <!-- Navegação de Abas da Extensão -->
+  <div class="nav-tabs">
+    <button class="nav-btn active" data-target="tab-main">Abas</button>
+    <button class="nav-btn" data-target="tab-sessions">Sessões</button>
+    <button class="nav-btn" data-target="tab-stats">Estatísticas</button>
   </div>
 
-  <div class="actions">
-    <button id="remove-duplicates" class="btn">Fechar as Duplicadas</button>
-    <button id="close-all" class="btn btn-danger">Fechar Todas</button>
+  <!-- ABA 1: GERENCIAMENTO DE ABAS ATIVAS -->
+  <div id="tab-main" class="tab-content active">
+    <div class="actions-grid">
+      <button id="btn-duplicates" class="btn">Limpar Duplicadas</button>
+      <button id="btn-discard" class="btn">Suspender Inativas</button>
+      <button id="btn-close-all" class="btn btn-danger" style="grid-column: span 2;">Fechar Todas</button>
+    </div>
+    <ul id="tab-list"></ul>
   </div>
 
-  <ul id="tab-list"></ul>
+  <!-- ABA 2: GERENCIAMENTO DE SESSÕES (SALVAR / IMPORTAR / EXPORTAR) -->
+  <div id="tab-sessions" class="tab-content">
+    <div class="session-input-group">
+      <input type="text" id="session-name" placeholder="Nome da sessão...">
+      <button id="btn-save-session" class="btn btn-primary">Salvar</button>
+    </div>
+    <div class="actions-grid">
+      <button id="btn-export-sessions" class="btn">Exportar (JSON)</button>
+      <button id="btn-import-trigger" class="btn">Importar (JSON)</button>
+      <input type="file" id="file-import" accept=".json" style="display: none;">
+    </div>
+    <h4>Sessões Salvas</h4>
+    <ul id="session-list"></ul>
+  </div>
 
-  <script src="popup.js"></script>
+  <!-- ABA 3: ESTATÍSTICAS DE USO -->
+  <div id="tab-stats" class="tab-content">
+    <div class="stat-card">
+      <h4>Total de Abas</h4>
+      <span id="stat-total-tabs">0</span>
+    </div>
+    <div class="stat-card">
+      <h4>Domínios Mais Frequentes</h4>
+      <ul id="stat-domains-list"></ul>
+    </div>
+  </div>
+  
+  <script type="module" src="js/popup.js"></script>
 </body>
+
+
 </html>
