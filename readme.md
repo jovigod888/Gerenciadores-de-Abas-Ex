@@ -1,47 +1,96 @@
+# 🚀 Gerenciador de Abas (Chrome Extension)
+
+Uma extensão moderna e leve para o Google Chrome desenvolvida em **Manifest V3**. O objetivo principal é otimizar a navegação, economizar memória RAM e organizar abas abertas em sessões de trabalho.
+
+---
+
+## 📌 Funcionalidades Principais
+
+* **📂 Gerenciamento de Sessões:**
+  * Salve o conjunto atual de abas abertas em uma sessão nomeada.
+  * Reabra todas as abas de uma sessão salva com apenas um clique.
+  * **Exportação e Importação:** Exporte suas sessões salvas em arquivo `.json` para backup ou transfira para outro navegador.
+
+* **🧹 Limpeza de Duplicadas:**
+  * Botão de 1 clique que identifica e fecha automaticamente abas repetidas apontando para a mesma URL.
+
+* **⚡ Auto-Discard / Suspensão de Abas:**
+  * Utiliza a API `chrome.tabs.discard` para suspender abas inativas no plano de fundo, reduzindo drasticamente o consumo de memória RAM e CPU sem fechar as abas.
+
+* **📊 Painel de Estatísticas com Gráfico Interativo:**
+  * Exibe o total geral de abas abertas no navegador.
+  * Gráfico de barras responsivo com o **Top 5 domínios mais acessados** em tempo real.
+
+---
+
+## 📁 Estrutura do Projeto
+
+```text
+Gerenciadores-de-Abas-Ex/
+├── css/
+│   └── style.css            # Estilos do popup e gráfico
+├── icons/
+│   ├── icon16.png           # Ícone do sistema (16x16)
+│   ├── icon48.png           # Ícone do menu de extensões (48x48)
+│   └── icon128.png          # Ícone da loja/gerenciador (128x128)
+├── js/
+│   ├── modules/
+│   │   └── stats.js         # Módulo de cálculo e renderização das estatísticas
+│   ├── background.js        # Service Worker em segundo plano
+│   └── popup.js             # Lógica principal da interface
+├── manifest.json            # Arquivo de configuração da extensão (Manifest V3)
+├── popup.html               # Interface gráfica principal do popup
+└── README.md                # Documentação do projeto
+
+```
+
+---
+
+## ⚙️ Como Instalar e Testar Localmente
+
+1. **Clone ou baixe este repositório:**
+```bash
+git clone [https://github.com/seu-usuario/Gerenciadores-de-Abas-Ex.git](https://github.com/seu-usuario/Gerenciadores-de-Abas-Ex.git)
+
+```
 
 
-## 🚀 Funcionalidades
+2. **Abra a página de extensões no navegador:**
+* Acesse `chrome://extensions/` no Chrome, Edge ou Brave.
 
-- **Salvar Abas em um Clique:** Clicou no ícone da extensão, todas as abas da janela atual são fechadas e salvas instantaneamente.
-- **Economia de Memória:** Fecha abas ociosas ou em excesso, liberando processamento e RAM.
-- **Restauração Fácil:** Restaure um grupo inteiro de abas com apenas um clique no botão "Restaurar Tudo".
-- **Gerenciamento de Histórico:** Visualize a data e a hora exatas em que cada grupo de abas foi salvo. Opção para apagar todo o histórico.
-- **Privacidade Local:** Todas as abas são salvas apenas no armazenamento local (`chrome.storage.local`) do próprio navegador. Nenhum dado é enviado para a nuvem.
+
+3. **Ative o Modo do Desenvolvedor:**
+* Alterne a chave **"Modo do desenvolvedor"** no canto superior direito.
+
+
+4. **Carregue a Extensão:**
+* Clique em **"Carregar sem compactação"** (Load unpacked).
+* Selecione a pasta raiz do projeto (`Gerenciadores-de-Abas-Ex`).
+
+
+5. **Pronto!** Fixe o ícone na barra de ferramentas do seu navegador e clique para usar.
+
+---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5 & CSS3:** Para estruturação e estilização da interface da lista de abas.
-- **JavaScript (Vanilla):** Lógica da aplicação sem frameworks externos.
-- **Chrome Extension API (Manifest V3):** Padrão moderno, seguro e performático para desenvolvimento de extensões.
+* **HTML5 & CSS3** (Flexbox, Grid e animações para o gráfico)
+* **JavaScript ES6+** (Modules, Async/Await)
+* **Chrome Extension API - Manifest V3** (`chrome.tabs`, `chrome.storage.local`)
 
-## ⚙️ Como Instalar e Testar
 
-Como esta extensão está em formato de código-fonte, você precisa instalá-la ativando o "Modo do Desenvolvedor" do navegador.
-
-1. Faça o download ou clone a pasta contendo estes arquivos em seu computador (ex: no Pop!_OS, coloque na pasta `Documentos`).
-2. Abra o seu navegador e acesse a página de extensões:
-   - No Chrome ou Brave: digite `chrome://extensions/` na barra de endereços.
-   - No Edge: digite `edge://extensions/`.
-3. No canto superior direito da tela, ative a chave **"Modo do desenvolvedor"** (Developer mode).
-4. Clique no botão **"Carregar sem compactação"** (Load unpacked) que aparecerá no canto superior esquerdo.
-5. Selecione a pasta raiz da extensão (a pasta que contém o arquivo `manifest.json`).
-6. Pronto! O ícone da extensão vai aparecer na sua barra de ferramentas (se estiver oculto, clique no ícone de "peça de quebra-cabeça" das extensões e fixe-a).
-
-## 💡 Como Usar
-
-1. Acumule algumas abas abertas que você deseja guardar para depois.
-2. Clique no ícone da extensão.
-3. A mágica acontece: suas abas serão fechadas e uma nova página "Minhas Abas Salvas" se abrirá com todos os links agrupados com a data atual.
-4. Quando quiser voltar a trabalhar nelas, clique no botão **Restaurar Tudo** ao lado da data correspondente.
-
-## 📝 Arquivos do Projeto
-
-- `manifest.json`: "Documento de identidade" da extensão. Define versão, nome e permissões.
-- `background.js`: Service Worker que roda em segundo plano. Intercepta o clique no ícone, lê as abas abertas e salva no `storage`.
-- `list.html`: A estrutura visual da página onde o usuário visualiza e gerencia os links salvos.
-- `list.js`: Script que interage com a página `list.html`, buscando os dados guardados e criando os elementos na tela.
 
 ---
-*Desenvolvido por claude*
-"""
 
+## 👨‍💻 Autor
+
+Desenvolvido por **[joao vitor]**.
+
+* **GitHub:** [@jovigod888](https://github.com/jovigod888/Gerenciadores-de-Abas-Ex)
+* **LinkedIn:** [joao vitor](https://www.linkedin.com/in/jo%C3%A3o-vitor-rodrigues-silva-moreira-40a677309/)
+
+---
+
+## 📝 Licença
+
+Este projeto é de código aberto e está sob a licença **MIT**. Fique à vontade para usar, estudar e modificar!
