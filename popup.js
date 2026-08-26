@@ -1,6 +1,5 @@
-// js/popup.js
 
-import { updateStats } from './modules/stats.js';
+import { renderStats, updateStats } from '.js/modules/stats.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Elementos do DOM
@@ -168,15 +167,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (tabIds.length === 0) return;
 
-    // Confirmação de segurança antes de fechar tudo
     const confirmado = confirm(`Tem certeza que deseja fechar ${tabIds.length} aba(s)? Essa ação não pode ser desfeita.`);
     if (!confirmado) return;
 
     await chrome.tabs.remove(tabIds);
   });
 
-  // --- SALVAR NOVA SESSÃO ---
-  document.getElementById("btn-save-session")?.addEventListener("click", async () => {
+  // --- SALVAR NOVA SESSÃO --- (CORRIGIDO PARA "btn-salvar")
+  document.getElementById("btn-salvar")?.addEventListener("click", async () => {
     const name = sessionNameInput.value.trim();
     if (!name) {
       alert("Por favor, digite um nome para salvar a sessão.");
@@ -225,7 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await chrome.storage.local.get("savedSessions");
         const currentSessions = data.savedSessions || {};
 
-        // Mescla as sessões antigas com as novas
         const merged = { ...currentSessions, ...importedSessions };
         await chrome.storage.local.set({ savedSessions: merged });
         renderSessions();

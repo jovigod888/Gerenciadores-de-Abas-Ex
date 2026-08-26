@@ -1,4 +1,5 @@
-// js/modules/stats.js
+
+
 
 export async function updateStats() {
   // Pega TODAS as abas abertas em TODAS as janelas
