@@ -6,6 +6,11 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log("Gerenciador de Abas instalado com sucesso.");
 });
 
+// AVISO: este listener só dispara se NÃO houver "default_popup" definido em
+// manifest.json. Como o manifest atual define "default_popup": "popup.html",
+// o Chrome sempre abre o popup ao clicar no ícone e este evento nunca roda.
+// Ou remova o default_popup (perdendo a UI do popup), ou chame essa lógica
+// por outro gatilho (ex.: um botão dentro do popup.html, ou chrome.commands).
 chrome.action.onClicked.addListener(async () => {
   try {
     // Pega todas as abas da janela atual

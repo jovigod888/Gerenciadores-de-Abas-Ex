@@ -1,5 +1,5 @@
 
-import { renderStats, updateStats } from '.js/modules/stats.js';
+import { updateStats } from './modules/stats.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Elementos do DOM
@@ -29,9 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. Funções Principais de Renderização
-
-  // --- RENDERIZAÇÃO DAS ABAS ATIVAS ---
   async function renderTabs() {
     const tabs = await chrome.tabs.query({ currentWindow: true });
     tabList.innerHTML = "";
